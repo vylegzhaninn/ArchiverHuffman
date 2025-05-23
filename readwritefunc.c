@@ -106,7 +106,7 @@ struct tree_node_t* readHuffmanTreeFromFile(FILE* input) {
 }
 
 
-void DecodingSym(FILE *input, FILE *output, struct tree_node_t *root, uint64_t total_chars) {
+void DecodingSym(FILE *input, FILE *output, struct tree_node_t *root, int total_chars) {
     struct tree_node_t *current = root;
     uint64_t chars_decoded = 0;
     uint8_t byte;
