@@ -24,8 +24,8 @@ void heapify(MinHeap* heap, int i) {
 
 void insert(MinHeap* heap, struct tree_node_t* node) {
     if (heap->size == MAX_SIZE) {
-        printf("error(insert)> : Куча переполнена!\n");
-        return;
+        perror("Куча переполнена!\n");
+        exit(1);
     }
 
     int i = heap->size;
@@ -57,6 +57,10 @@ struct tree_node_t* extractMin(MinHeap* heap) {
 
 MinHeap* MakeEmptyHeap() {
     MinHeap* heap = malloc(sizeof(MinHeap));
+    if (heap == NULL) {
+        perror("Ошибка выделения памяти для кучи!\n");
+        exit(1);
+    }
     heap->size = 0;
     for (int i = 0; i < MAX_SIZE; i++)
         heap->data[i] = NULL;
@@ -65,6 +69,10 @@ MinHeap* MakeEmptyHeap() {
 
 struct tree_node_t* NewTreeFromSym(char sym, double f) {
     struct tree_node_t* res = malloc(sizeof(struct tree_node_t));
+    if (res == NULL) {
+        perror("Ошибка выделения памяти для узла дерева!\n");
+        exit(1);
+    }
     res->f = f;
     res->sym = sym;
     res->left = NULL;
@@ -74,6 +82,10 @@ struct tree_node_t* NewTreeFromSym(char sym, double f) {
 
 struct tree_node_t* NewTreeFromTrees(struct tree_node_t* tree1, struct tree_node_t* tree2) {
     struct tree_node_t* res = malloc(sizeof(struct tree_node_t));
+    if (res == NULL) {
+        perror("Ошибка выделения памяти для узла дерева!\n");
+        exit(1);
+    }
     res->f = tree1->f + tree2->f;
     res->left = tree1;
     res->right = tree2;
