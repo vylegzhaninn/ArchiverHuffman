@@ -2,16 +2,12 @@ TARGET = huffman
 CC = gcc
 CFLAGS = -Wall -Wextra -g
 
-SRCS = main.c algofhuffman.c writefunc.c
-OBJS = $(SRCS:.c=.o)
+SRCS = main.c algofhuffman.c readwritefunc.c
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(TARGET):
+	$(CC) $(CFLAGS) -o $@ $(SRCS)
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(TARGET)
