@@ -84,6 +84,10 @@ struct tree_node_t* readHuffmanTreeFromFile(FILE* input) {
         exit(1);
     }
     struct tree_node_t* node = malloc(sizeof(struct tree_node_t));
+    if (node == NULL) {
+        perror("Ошибка выделения памяти для узла дерева!\n");
+        exit(1);
+    }
 
     if (marker == 1) {
         if (fread(&node->sym, sizeof(char), 1, input) != 1){
