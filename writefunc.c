@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-#include "algofhuffman.h"
-#include "writefunc.h"
+#include "readwritefunc.h"
 
 static uint8_t HuffmanCodes[MAX_SIZE][32];
 static uint8_t HuffmanCodesSize[MAX_SIZE];
@@ -85,14 +80,14 @@ void writeHuffmanTreeToFile(struct tree_node_t* root, FILE* output) {
 struct tree_node_t* readHuffmanTreeFromFile(FILE* input) {
     uint8_t marker;
     if (fread(&marker, sizeof(uint8_t), 1, input) != 1){
-        printf("Ошибка чтения маркера!\n");
+        perror("Ошибка чтения маркера!\n");
         exit(1);
     }
     struct tree_node_t* node = malloc(sizeof(struct tree_node_t));
 
     if (marker == 1) {
         if (fread(&node->sym, sizeof(char), 1, input) != 1){
-            printf("Ошибка чтения символа!\n");
+            perror("Ошибка чтения символа!\n");
             exit(1);
         }
         node->left = NULL;
@@ -116,8 +111,8 @@ void DecodingSym(FILE *input, FILE *output, struct tree_node_t *root, uint64_t t
     while (chars_decoded < total_chars) {
         if (bit_index == 0) {
             if (fread(&byte, 1, 1, input) != 1) {
-                printf("eror(decoding)> В исходном в файле не полное кол-во символов!\n");
-                break;
+                perror("В исходном в файле не полное кол-во символов!\n");
+                exit(1);
             }
         }
 
