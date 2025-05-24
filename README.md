@@ -34,7 +34,7 @@
 ## Использование
 
 ```bash
-./huffman [-en | -de] file1 file2 ...
+./huffman [-en , -de] file1 file2 ...
 ```
 
 ## Содержимое проекта
