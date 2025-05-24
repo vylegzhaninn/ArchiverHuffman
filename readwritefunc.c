@@ -106,8 +106,16 @@ struct tree_node_t* readHuffmanTreeFromFile(FILE* input) {
 }
 
 
-void DecodingSym(FILE *input, FILE *output, struct tree_node_t *root, int total_chars) {
+void DecodingSym(FILE *input, FILE *output, struct tree_node_t *root, uint64_t total_chars) {
     struct tree_node_t *current = root;
+    if (current == NULL) {
+        perror("Дерево Хаффмана пустое!\n");
+        exit(1);
+    }
+    if (total_chars == 0) {
+        perror("Общее количество символов равно нулю!\n");
+        exit(1);
+    }
     uint64_t chars_decoded = 0;
     uint8_t byte;
     int bit_index = 0;

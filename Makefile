@@ -1,13 +1,11 @@
-TARGET = huffman
-CC = gcc
-CFLAGS = -Wall -Wextra -g
+CC       = gcc
+CFLAGS   = -Wall -Wextra -g
+SRCS     = main.c algofhuffman.c readwritefunc.c
 
-SRCS = main.c algofhuffman.c readwritefunc.c
+all: huffman
 
-all: $(TARGET)
-
-$(TARGET):
-	$(CC) $(CFLAGS) -o $@ $(SRCS)
+huffman: $(SRCS)
+	$(CC) $(CFLAGS) -DBYTESIZE1 -o $@ $(SRCS)
 
 clean:
-	rm -f $(TARGET)
+	rm -f huffman1 huffman2

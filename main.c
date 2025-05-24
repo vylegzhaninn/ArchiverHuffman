@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
 
         if (mode){
             double frequencies[MAX_COUNT] = {0};
-            int total_chars = 0;
+            uint64_t total_chars = 0;
             uint8_t ch;
             printf("\nСчитывание символов...");
             fflush(stdout);
@@ -88,7 +88,7 @@ int main(int argc, char* argv[]) {
             printf("\nЗапись кодов хафмена в исходный файл...");
             fflush(stdout);
             writeHuffmanTreeToFile(huffman_tree, output);
-            fwrite(&total_chars, sizeof(int), 1, output);
+            fwrite(&total_chars, sizeof(uint64_t), 1, output);
             rewind(input);
             printf("\nКодирование символов...");
             fflush(stdout);
@@ -102,7 +102,7 @@ int main(int argc, char* argv[]) {
             huffman_tree = readHuffmanTreeFromFile(input);
             int total_chars = 0;
             printf("Декодирование символов...\n");
-            fread(&total_chars, sizeof(int), 1, input);
+            fread(&total_chars, sizeof(uint64_t), 1, input);
             DecodingSym(input, output, huffman_tree, total_chars);
 
             printf("Файл (%s) успешно декодирован в (%s).\n\n", argv[i], output_filename);
