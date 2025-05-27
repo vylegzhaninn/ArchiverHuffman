@@ -1,6 +1,8 @@
-CC       = gcc
-CFLAGS   = -Wall -Wextra -g
-SRCS     = main.c algofhuffman.c readwritefunc.c
+TARGET = huffman
+CC = gcc
+CFLAGS = -Wall -Wextra -g
+
+SRCS = main.c algofhuffman.c readwritefunc.c
 
 all: huffman
 
