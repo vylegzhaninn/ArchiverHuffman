@@ -71,7 +71,6 @@ int main(int argc, char* argv[]) {
             return 1;
         }
 
-<<<<<<< HEAD
         uint32_t num_files = argc - file_start_idx;
         fwrite(&num_files, sizeof(uint32_t), 1, output);
 
@@ -79,13 +78,6 @@ int main(int argc, char* argv[]) {
 
         for (int i = file_start_idx; i < argc; i++) {
             printf("\rОбработка файла: %s                    ", argv[i]);
-=======
-        if (mode){
-            double frequencies[MAX_COUNT] = {0};
-            uint64_t total_chars = 0;
-            uint8_t ch;
-            printf("\nСчитывание символов...");
->>>>>>> 494914933122f8312b100cbf5d0deec06a33b380
             fflush(stdout);
             usleep(500000); // для наглядности
 
@@ -257,7 +249,6 @@ int main(int argc, char* argv[]) {
 
             printf("\r   Чтение дерева Хаффмена           ");
             fflush(stdout);
-<<<<<<< HEAD
             usleep(500000);
 
             struct tree_node_t* huffman_tree = readHuffmanTreeFromFile(output);
@@ -270,29 +261,6 @@ int main(int argc, char* argv[]) {
                 fclose(output);
                 return 1;
             }
-=======
-            buildHuffmanCodes(huffman_tree, bits, 0);
-            
-            printf("\nЗапись кодов хафмена в исходный файл...");
-            fflush(stdout);
-            writeHuffmanTreeToFile(huffman_tree, output);
-            fwrite(&total_chars, sizeof(uint64_t), 1, output);
-            rewind(input);
-            printf("\nКодирование символов...");
-            fflush(stdout);
-            EncodingSym(input, output);
-
-            sizeinput[i - 2] = ftell(input);
-            sizeoutput[i - 2] = ftell(output);
-            compressed[i - 2] = (double) sizeoutput[i - 2] / sizeinput[i - 2];
-        }else{
-            printf("\nСчитывание дерева хафмена...\n");
-            huffman_tree = readHuffmanTreeFromFile(input);
-            int total_chars = 0;
-            printf("Декодирование символов...\n");
-            fread(&total_chars, sizeof(uint64_t), 1, input);
-            DecodingSym(input, output, huffman_tree, total_chars);
->>>>>>> 494914933122f8312b100cbf5d0deec06a33b380
 
             printf("\r   Декодирование символов             ");
             fflush(stdout);
